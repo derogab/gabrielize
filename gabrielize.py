@@ -53,8 +53,15 @@ def drive(path):
                             pass
                         pass
                     else:
-                        print('Downloading '+repo+'...\033[37m previously downloaded.\x1b[0m')
-                        pass
+                        # previously downloaded
+                        g = git.cmd.Git(path+repo)
+                        if g.pull() == 'Already up-to-date.':
+                            print('Downloading '+repo+'...\033[37m previously downloaded.\x1b[0m')
+                            pass # else
+                        else:
+                            print('Downloading '+repo+'...\033[37m updated.\x1b[0m')
+                            pass # else
+                        pass # else
                     pass # if
                 pass # for
             pass # with
