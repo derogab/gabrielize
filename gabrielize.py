@@ -56,10 +56,10 @@ def drive(path):
                         # previously downloaded
                         g = git.cmd.Git(path+repo)
                         if g.pull() == 'Already up-to-date.':
-                            print('Downloading '+repo+'...\033[37m previously downloaded.\x1b[0m')
+                            print('Downloading '+repo+'...\033[95m no changes.\x1b[0m')
                             pass # else
                         else:
-                            print('Downloading '+repo+'...\033[37m updated.\x1b[0m')
+                            print('Downloading '+repo+'...\033[33m updated.\x1b[0m')
                             pass # else
                         pass # else
                     pass # if
