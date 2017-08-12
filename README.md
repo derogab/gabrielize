@@ -3,11 +3,9 @@ Personal script to inizialize Gab devices.
 
 **Requirements**
 ```
-pip install pyfiglet
-pip install gitpython
-pip install six
-pip install requests
+pip install -r lists/requirements
 ```
+or install `pyfliget`,`gitpython`,`six` and `requests`.
 
 **Download**
 ```bash
