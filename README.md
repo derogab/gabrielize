@@ -4,11 +4,7 @@ Personal script to inizialize Gab devices.
 **Requirements**
 ```
 pip install pyfiglet
-pip install os
-pip install sys
-pip install git
 pip install gitpython
-pip install getpass
 pip install six
 pip install requests
 ```
