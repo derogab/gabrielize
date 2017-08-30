@@ -30,7 +30,8 @@ def repo(path=''):
     if os.path.isdir(path):
         with open("lists/repositories") as file:
             for line in file:
-                url = line.strip() # preprocess line
+                repository = line.strip() # preprocess line
+                url = "https://github.com/" + repository
                 if url!='':
                     repo = url.split('/')[4]
                     if repo.endswith('.git'):
