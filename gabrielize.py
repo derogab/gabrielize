@@ -13,15 +13,15 @@ def art(text):
     return '\033[96m'+figlet_format(text, font='slant')+'\x1b[0m'
     pass
 
-def drive(path):
+def repo(path=''):
     # Initialize a gab's drive
     if path=='':
-        path = six.moves.input('Insert the path to drive: ')
+        path = six.moves.input('Insert the path to save repo: ')
         pass
 
     print(art('Gabrielize'))
-    print('Gabrielize drive @ '+path)
     print('Gabrielizing..')
+    print('Save repositories @ '+path)
 
     if not path.endswith('/'):
         path = path+'/'
