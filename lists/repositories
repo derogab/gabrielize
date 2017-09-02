@@ -40,6 +40,8 @@ OpenVPN/openvpn
 python-pillow/Pillow
 lukehaas/getlorem
 jgamblin/Mirai-Source-Code
+wireshark/wireshark
+wireshark/winpcap
 electron/electron
 connors/photon
 jiahaog/nativefier
@@ -67,6 +69,7 @@ mps-youtube/pafy
 mps-youtube/mps-youtube
 biometrics/openbr
 orakaro/rainbowstream
+badges/shields
 ivanseidel/IAMDinosaur
 ivanseidel/Is-Now-Illegal
 vysheng/tg
