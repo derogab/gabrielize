@@ -22,6 +22,9 @@ JetBrains/kotlin
 scala/scala
 facebook/react
 composer/composer
+GNOME/gedit
+mongodb/mongo
+Microsoft/monaco-editor
 maxbbraun/trump2cash
 karulis/pybluez
 droberson/ssh-honeypot
@@ -84,6 +87,7 @@ ckolivas/cgminer
 asciinema/asciinema
 lukem512/pronounceable
 jgthms/marksheet
+syncthing/syncthing
 EbookFoundation/free-programming-books
 HFTrader/DeepLearningBook
 LewisVo/Awesome-Linux-Software
