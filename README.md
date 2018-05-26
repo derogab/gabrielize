@@ -1,20 +1,24 @@
 # Gabrielize
-Personal script to inizialize Gab devices.
 
-**Requirements**
-```
+![Gabrielize](./images/header.png)
+
+### Introduction
+_Gabrielize_ is an aggregate of scripts to initialize personal devices.
+
+### Requirements
+```bash
 pip install -r lists/requirements
 ```
-or install `pyfliget`,`gitpython`,`six` and `requests`.
+or install `pyfliget`, `gitpython`, `six` and `requests`.
 
-**Download**
+### Download
 ```bash
 git clone https://github.com/derogab/gabrielize.git
 ```
 
-**Usage**
+### Usage
 ```python
 import gabrielize
 
-gabrielize.drive('/folder/to/gabrielize')
+gabrielize.repo('/folder/to/gabrielize')
 ```
