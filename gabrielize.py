@@ -55,13 +55,18 @@ def repo(path=''):
                         pass
                     else:
                         # previously downloaded
-                        g = git.cmd.Git(path+repo)
-                        if g.pull() == 'Already up-to-date.':
-                            print('Downloading '+repo+'...\033[95m no changes.\x1b[0m')
-                            pass # else
-                        else:
-                            print('Downloading '+repo+'...\033[33m updated.\x1b[0m')
-                            pass # else
+                        try:
+                        	g = git.cmd.Git(path+repo)
+                        	if g.pull() == 'Already up-to-date.':
+	                            print('Downloading '+repo+'...\033[95m no changes.\x1b[0m')
+	                            pass # else
+	                        else:
+	                            print('Downloading '+repo+'...\033[33m updated.\x1b[0m')
+	                            pass # else
+                        	pass # try
+                        except:
+                        	print('Downloading '+repo+'...\033[91m failed.\x1b[0m')
+                        	pass # except
                         pass # else
                     pass # if
                 pass # for
