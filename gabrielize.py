@@ -1,4 +1,6 @@
-# Requirements
+#!/usr/bin/env python3
+
+### Requirements ###
 from __future__ import print_function
 from pyfiglet import figlet_format
 import os
@@ -8,19 +10,20 @@ import getpass
 import six
 import requests
 
-# Functions
+### Functions ###
+
+# text in figlet format
 def art(text):
     return '\033[96m'+figlet_format(text, font='slant')+'\x1b[0m'
     pass
 
+# clone (or pull) a list of repository
 def repo(path=''):
-    # Initialize a gab's drive
+
     if path=='':
         path = six.moves.input('Insert the path to save repo: ')
         pass
 
-    print(art('Gabrielize'))
-    print('Gabrielizing..')
     print('Save repositories @ '+path)
 
     if not path.endswith('/'):
