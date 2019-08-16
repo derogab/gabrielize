@@ -12,12 +12,12 @@ makepkg -si
 
 # Update
 # Update all packages
-yay -Syu
+yay -Syu --noconfirm
 
 # Plank
 # Plank is meant to be the simplest dock on the planet.
 # https://github.com/ricotz/plank
-yay -S plank
+yay -S plank --noconfirm
 
 # Wallpaper
 # Set a wonderful wallpaper 
@@ -38,9 +38,9 @@ xfconf-query -c xfce4-panel -p /panels/panel-0/position -s "p=11;x=0;y=0"
 # VSCode
 # Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop.
 # https://aur.archlinux.org/packages/visual-studio-code-bin / https://code.visualstudio.com
-yay -S visual-studio-code-bin
+yay -S visual-studio-code-bin --noconfirm
 
 # Telegram
 # Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.
 # https://www.archlinux.org/packages/community/x86_64/telegram-desktop / https://desktop.telegram.org
-yay -S telegram-desktop
+yay -S telegram-desktop --noconfirm
