@@ -1,7 +1,6 @@
 #! /bin/bash
 
 ### GABRIELIZE ###
-
 ## Install, update & configure
 
 # Yay
@@ -35,3 +34,8 @@ done
 # Set default panel0 position to the upper border
 # https://forum.xfce.org/viewtopic.php?pid=26514#p26514
 xfconf-query -c xfce4-panel -p /panels/panel-0/position -s "p=11;x=0;y=0"
+
+# VSCode
+# Visual Studio Code
+# https://aur.archlinux.org/packages/visual-studio-code-bin/ / https://code.visualstudio.com/
+yay -S visual-studio-code-bin
