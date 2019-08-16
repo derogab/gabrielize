@@ -36,6 +36,11 @@ done
 xfconf-query -c xfce4-panel -p /panels/panel-0/position -s "p=11;x=0;y=0"
 
 # VSCode
-# Visual Studio Code
-# https://aur.archlinux.org/packages/visual-studio-code-bin/ / https://code.visualstudio.com/
+# Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop.
+# https://aur.archlinux.org/packages/visual-studio-code-bin / https://code.visualstudio.com
 yay -S visual-studio-code-bin
+
+# Telegram
+# Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.
+# https://www.archlinux.org/packages/community/x86_64/telegram-desktop / https://desktop.telegram.org
+yay -S telegram-desktop
