@@ -30,3 +30,8 @@ for property in $(xfconf-query -c xfce4-desktop -l | grep "last-image$")
 do
     xfconf-query -c xfce4-desktop -p $property -s $HOME/.wallpaper.jpg
 done
+
+# Panel
+# Set default panel0 position to the upper border
+# https://forum.xfce.org/viewtopic.php?pid=26514#p26514
+xfconf-query -c xfce4-panel -p /panels/panel-0/position -s "p=11;x=0;y=0"
