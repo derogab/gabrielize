@@ -18,6 +18,8 @@ yay -Syu --noconfirm
 # Plank is meant to be the simplest dock on the planet.
 # https://github.com/ricotz/plank
 yay -S plank --noconfirm
+# https://github.com/derogab/dotfiles/tree/master/plank
+wget -O ~/.config/autostart/plank.desktop https://raw.githubusercontent.com/derogab/dotfiles/master/plank/plank.desktop
 
 # Wallpaper
 # Set a wonderful wallpaper 
