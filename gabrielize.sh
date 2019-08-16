@@ -2,7 +2,7 @@
 
 ### GABRIELIZE ###
 
-## Install & configure
+## Install, update & configure
 
 # Yay
 # Yet Another Yogurt - An AUR Helper Written in Go
@@ -10,4 +10,8 @@
 git clone https://aur.archlinux.org/yay.git /tmp/yay
 cd /tmp/yay
 makepkg -si
+
+# Update
+# Update all packages
+yay -Syu
 
