@@ -15,3 +15,7 @@ makepkg -si
 # Update all packages
 yay -Syu
 
+# Plank
+# Plank is meant to be the simplest dock on the planet.
+# https://github.com/ricotz/plank
+yay -S plank
