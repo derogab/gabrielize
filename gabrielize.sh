@@ -37,6 +37,11 @@ done
 # https://forum.xfce.org/viewtopic.php?pid=26514#p26514
 xfconf-query -c xfce4-panel -p /panels/panel-0/position -s "p=11;x=0;y=0"
 
+# Libinput
+# Input device management and event handling library
+# https://wiki.archlinux.org/index.php/Libinput
+yay -S libinput --noconfirm
+
 # NodeJS & NPM
 # Evented I/O for V8 javascript / npm is the world's largest software registry
 # https://www.archlinux.org/packages/community/x86_64/nodejs / https://nodejs.org
