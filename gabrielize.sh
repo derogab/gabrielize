@@ -57,3 +57,8 @@ yay -S visual-studio-code-bin --noconfirm
 # Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.
 # https://www.archlinux.org/packages/community/x86_64/telegram-desktop / https://desktop.telegram.org
 yay -S telegram-desktop --noconfirm
+
+# Thunderbird
+# Standalone mail and news reader from mozilla.org
+# https://www.thunderbird.net
+yay -S thunderbird --noconfirm 
