@@ -48,6 +48,13 @@ yay -S libinput --noconfirm
 # https://www.archlinux.org/packages/community/any/npm / https://www.npmjs.com
 yay -S nodejs npm --noconfirm
 
+# Conky
+# Conky is a free, light-weight system monitor for X, that displays any kind of information on your desktop.
+# https://github.com/brndnmtthws/conky
+yay -S conky --noconfirm
+wget -O $HOME/.conkyrc https://raw.githubusercontent.com/derogab/dotfiles/master/conky/.conkyrc
+wget -O ~/.config/autostart/conky.desktop https://raw.githubusercontent.com/derogab/dotfiles/master/conky/conky.desktop
+
 # VSCode
 # Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop.
 # https://aur.archlinux.org/packages/visual-studio-code-bin / https://code.visualstudio.com
