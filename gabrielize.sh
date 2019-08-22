@@ -25,8 +25,7 @@ wget -O ~/.config/autostart/plank.desktop https://raw.githubusercontent.com/dero
 # Set a wonderful wallpaper 
 # https://gitlab.manjaro.org/artwork/wallpapers/wallpapers-2018/raw/master/nature-3058859.jpg
 # and also in /usr/share/backgrounds/wallpapers-2018/
-wget -O /tmp/wallpaper.jpg https://gitlab.manjaro.org/artwork/wallpapers/wallpapers-2018/raw/master/nature-3058859.jpg
-cp /tmp/wallpaper.jpg $HOME/.wallpaper.jpg
+wget -O $HOME/.wallpaper.jpg https://gitlab.manjaro.org/artwork/wallpapers/wallpapers-2018/raw/master/nature-3058859.jpg
 for property in $(xfconf-query -c xfce4-desktop -l | grep "last-image$")
 do
     xfconf-query -c xfce4-desktop -p $property -s $HOME/.wallpaper.jpg
