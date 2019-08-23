@@ -3,6 +3,10 @@
 ### GABRIELIZE ###
 ## Install, update & configure
 
+# Update
+# Update all packages
+sudo pacman -Syu --noconfirm
+
 # Yay
 # Yet Another Yogurt - An AUR Helper Written in Go
 # https://github.com/Jguer/yay 
