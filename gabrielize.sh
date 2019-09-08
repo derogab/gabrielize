@@ -58,7 +58,7 @@ yay -S nodejs npm --noconfirm
 # Docker
 # "World's leading software container platform."
 # https://www.docker.com
-yay -S docker --noconfirm
+yay -S docker docker-compose --noconfirm
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 groupadd docker
