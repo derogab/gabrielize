@@ -55,6 +55,15 @@ yay -S libinput --noconfirm
 # https://www.archlinux.org/packages/community/any/npm / https://www.npmjs.com
 yay -S nodejs npm --noconfirm
 
+# Docker
+# "World's leading software container platform."
+# https://www.docker.com
+yay -S docker --noconfirm
+sudo systemctl start docker.service
+sudo systemctl enable docker.service
+groupadd docker
+sudo gpasswd -a $USER docker
+
 # Conky
 # Conky is a free, light-weight system monitor for X, that displays any kind of information on your desktop.
 # https://github.com/brndnmtthws/conky
