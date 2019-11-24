@@ -28,6 +28,8 @@ yay -Syu --noconfirm
 yay -S plank --noconfirm
 # https://github.com/derogab/dotfiles/tree/master/plank
 wget -O ~/.config/autostart/plank.desktop https://raw.githubusercontent.com/derogab/dotfiles/master/plank/plank.desktop
+# and start now!
+plank > /dev/null 2>&1 &
 
 # Wallpaper
 # Set a wonderful wallpaper 
@@ -70,6 +72,8 @@ sudo gpasswd -a $USER docker
 yay -S conky --noconfirm
 wget -O $HOME/.conkyrc https://raw.githubusercontent.com/derogab/dotfiles/master/conky/.conkyrc
 wget -O ~/.config/autostart/conky.desktop https://raw.githubusercontent.com/derogab/dotfiles/master/conky/conky.desktop
+# and start now!
+conky > /dev/null 2>&1 &
 
 # VSCode
 # Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop.
