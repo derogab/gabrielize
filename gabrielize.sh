@@ -55,7 +55,8 @@ yay -S libinput --noconfirm
 # Evented I/O for V8 javascript / npm is the world's largest software registry
 # https://www.archlinux.org/packages/community/x86_64/nodejs / https://nodejs.org
 # https://www.archlinux.org/packages/community/any/npm / https://www.npmjs.com
-yay -S nodejs npm --noconfirm
+# https://www.archlinux.org/packages/community/any/yarn/ / https://yarnpkg.com
+yay -S nodejs npm yarn --noconfirm
 
 # Docker
 # "World's leading software container platform."
