@@ -1,6 +1,6 @@
 # Gabrielize
 
-![Gabrielize](./assets/header.png)
+![Gabrielize](./.github/assets/header.png)
 
 ## Introduction
 _Gabrielize_ is an aggregate of scripts to initialize personal devices.
