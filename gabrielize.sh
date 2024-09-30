@@ -1,92 +1,118 @@
 #! /bin/bash
 
+### UTILS ###
+# Add lines to a file
+# Usage: add_lines_to_file /path/to/file lines_to_add
+add_lines_to_file() {
+  local file="$1"
+  local lines="$2"
+  local added_lines=""
+
+  if [ -f "$file" ]; then
+    while IFS= read -r line; do
+      line=$(echo "$line" | sed 's/^\s*#\s*//')  # Remove leading '#' and whitespace
+      if ! grep -Fq "$line" "$file"; then
+        echo "$line" >> "$file"
+        added_lines="${added_lines}\n$line"
+      fi
+    done <<< "$lines"
+  else
+    echo "File $file not found."
+  fi
+}
+
 ### GABRIELIZE ###
 ## Install, update & configure
 
-# Update
-# Update all packages
-sudo pacman -Syu --noconfirm
+# Permissions
+# Check if the script is run as root.
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root. Please use sudo or log in as the root user."
+  exit 1
+fi
 
-# Yay
-# Yet Another Yogurt - An AUR Helper Written in Go
-# https://github.com/Jguer/yay 
-git clone https://aur.archlinux.org/yay.git /tmp/yay
-cd /tmp/yay
-makepkg -si
-
-# Refresh
-# Reloading .bashrc
-source ~/.bashrc
-
-# Update
-# Update all packages
-yay -Syu --noconfirm
-
-# Plank
-# Plank is meant to be the simplest dock on the planet.
-# https://github.com/ricotz/plank
-yay -S plank --noconfirm
-# https://github.com/derogab/dotfiles/tree/master/plank
-wget -O ~/.config/autostart/plank.desktop https://raw.githubusercontent.com/derogab/dotfiles/master/plank/plank.desktop
-# and start now!
-plank > /dev/null 2>&1 &
+# Home
+# Ask the user the main user home folder.
+echo -n "Enter home folder (ex. /home/user): " 
+read USER_HOME
+USER_HOME=$(realpath -s "$USER_HOME")
+if [ ! -d "$USER_HOME" ]; then
+  echo "$USER_HOME does not exist. Insert the correct home folder."
+  exit 1
+fi
 
 # Wallpaper
-# Set a wonderful wallpaper 
+# Set a wonderful custom wallpaper.
 # https://gitlab.manjaro.org/artwork/wallpapers/wallpapers-2018/raw/master/nature-3058859.jpg
-# and also in /usr/share/backgrounds/wallpapers-2018/
-wget -O $HOME/.wallpaper.jpg https://gitlab.manjaro.org/artwork/wallpapers/wallpapers-2018/raw/master/nature-3058859.jpg
-for property in $(xfconf-query -c xfce4-desktop -l | grep "last-image$")
-do
-    xfconf-query -c xfce4-desktop -p $property -s $HOME/.wallpaper.jpg
-done
+wget -q -O $USER_HOME/.wallpaper.jpg https://gitlab.manjaro.org/artwork/wallpapers/wallpapers-2018/raw/master/nature-3058859.jpg
+if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]] || [[ "$DESKTOP_SESSION" == "gnome" ]]; then
+  echo "Setting up the wallpaper for GNOME."
+  gsettings set org.gnome.desktop.background picture-uri "file://$USER_HOME/.wallpaper.jpg" >/dev/null 2>&1
+  gsettings set org.gnome.desktop.background picture-uri-dark "file://$USER_HOME/.wallpaper.jpg" >/dev/null 2>&1
+fi
 
-# Panel
-# Set default panel0 position to the upper border
-# https://forum.xfce.org/viewtopic.php?pid=26514#p26514
-xfconf-query -c xfce4-panel -p /panels/panel-0/position -s "p=11;x=0;y=0"
+# BASH
+# Add personal BASH data to BASHRC.
+echo "Setup customized BASH data."
+personal_bash_data='if [ -f ~/.bash_derogab ]; then . ~/.bash_derogab; fi # Gabrielize: plug-in from @derogab'
+add_lines_to_file $USER_HOME/.bashrc "$personal_bash_data"
 
-# Libinput
-# Input device management and event handling library
-# https://wiki.archlinux.org/index.php/Libinput
-yay -S libinput --noconfirm
+# SBIN
+# Add SBIN to PATH.
+echo "Adding sbin folder in PATH."
+add_lines_to_file /root/.bashrc 'export PATH=$PATH:/usr/sbin # Gabrielize: add sbin to PATH'
+
+# Remove games
+# Remove all games installed by GNOME.
+echo "Removing all games."
+apt purge -y gnome-games >/dev/null 2>&1
+
+# Update
+# Update all packages.
+echo "Updating all packages."
+apt update >/dev/null 2>&1
+apt upgrade -y >/dev/null 2>&1
+apt autoremove -y >/dev/null 2>&1
 
 # NodeJS & NPM
-# Evented I/O for V8 javascript / npm is the world's largest software registry
-# https://www.archlinux.org/packages/community/x86_64/nodejs / https://nodejs.org
-# https://www.archlinux.org/packages/community/any/npm / https://www.npmjs.com
-# https://www.archlinux.org/packages/community/any/yarn/ / https://yarnpkg.com
-yay -S nodejs npm yarn --noconfirm
+# Evented I/O for V8 javascript / npm is the world's largest software registry.
+# https://nodejs.org/en / https://github.com/nvm-sh/nvm
+echo "Installing Node Version Manager (NVM)."
+curl -so- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash >/dev/null 2>&1
+source ~/.bashrc
+echo "Installing Node."
+nvm install 20 >/dev/null 2>&1
+nvm use 20
 
-# Docker
-# "World's leading software container platform."
-# https://www.docker.com
-yay -S docker docker-compose --noconfirm
-sudo systemctl start docker.service
-sudo systemctl enable docker.service
-groupadd docker
-sudo gpasswd -a $USER docker
+# Podman
+# Podman is an open source Open Container Initiative-compliant container management tool from Red Hat used for 
+# handling containers, images, volumes, and pods on the Linux operating system.
+# https://podman.io
+echo "Installing Podman."
+apt install -y podman >/dev/null 2>&1
 
-# Conky
-# Conky is a free, light-weight system monitor for X, that displays any kind of information on your desktop.
-# https://github.com/brndnmtthws/conky
-yay -S conky --noconfirm
-wget -O $HOME/.conkyrc https://raw.githubusercontent.com/derogab/dotfiles/master/conky/.conkyrc
-wget -O ~/.config/autostart/conky.desktop https://raw.githubusercontent.com/derogab/dotfiles/master/conky/conky.desktop
-# and start now!
-conky > /dev/null 2>&1 &
-
-# VSCode
-# Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop.
-# https://aur.archlinux.org/packages/visual-studio-code-bin / https://code.visualstudio.com
-yay -S visual-studio-code-bin --noconfirm
+# Flatpak
+# Flatpak is a utility for software deployment and package management for Linux.
+# https://www.flatpak.org/setup/Debian / https://www.flatpak.org
+echo "Installing Flatpak."
+apt install -y flatpak gnome-software-plugin-flatpak >/dev/null 2>&1
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo >/dev/null 2>&1
 
 # Telegram
 # Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.
 # https://www.archlinux.org/packages/community/x86_64/telegram-desktop / https://desktop.telegram.org
-yay -S telegram-desktop --noconfirm
+echo "Installing Telegram Desktop."
+flatpak install -y flathub org.telegram.desktop >/dev/null 2>&1
 
 # Thunderbird
-# Standalone mail and news reader from mozilla.org
+# Standalone mail and news reader from mozilla.org.
 # https://www.thunderbird.net
-yay -S thunderbird --noconfirm 
+echo "Installing Thunderbird."
+apt install -y thunderbird >/dev/null 2>&1
+
+# Security setup by Turtlecute
+# It's a script for automatically hardening your linux system.
+echo "Running hardening script by Turtlecute."
+wget -q https://raw.githubusercontent.com/Turtlecute33/Hardening-linux-script/f959c1f988f7cc0af87db124dcbb3875b71e3462/hardening-script.sh -O /tmp/hardening-script.sh
+chmod +x /tmp/hardening-script.sh
+/tmp/hardening-script.sh
