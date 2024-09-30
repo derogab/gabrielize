@@ -19,3 +19,8 @@ git clone https://github.com/derogab/gabrielize.git
 
 ./gabrielize.sh
 ```
+
+## Fast usage
+```bash
+bash <( curl -s https://raw.githubusercontent.com/derogab/gabrielize/refs/heads/master/gabrielize.sh )
+```
